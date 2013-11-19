@@ -14,7 +14,8 @@ Flight::route('/', function(){
 
 //Web Service
 Flight::route('/developers', function(){
-    echo 'This is the base url for the Paper Stack web service';
+    Flight::render('developer.php');
+    
 });
 
 Flight::route('/developers/users(/@id)',function($id) {
