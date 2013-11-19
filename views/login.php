@@ -6,6 +6,7 @@
     <link rel='stylesheet' type='text/css' href='res/css/style.css' />
 </head>
 <body>
+    <h3><a href="developers"</a>Developer Portal</h1>
     <div class='container'>
         <section id='content'>
             <form action='login.php'>
