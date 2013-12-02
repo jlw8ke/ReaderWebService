@@ -98,7 +98,32 @@
         <br/>
         <h4>Get a Specific Files</h4>
         <p><a href="developers/files/1/1">/files/{user_id}/{file_id}</a> - returns the information of a specific file from a specific user</p>
+        <br/><hr/>
+            <h2>Google App Engine Web Service</h2>
+        <hr/>
+        <p><a href="http://pdfs2speech.appspot.com/search">http://pdfs2speech.appspot.com/search</a> is the base URL for the Python web service</p>
+        <p>The python web service takes in get parameters, and allows developers to search for articles uploaded.</p>
+        <div class="well">
+            <details>
+                <summary>Parameters</summary>
+                <span class="label label-info">
+                    <p>query: the name of the file to search for</p>
+                </span>
+            </details>
+            <br/>
+            <p>The developer will recieve a json with the following attributes</p>
+            <details>
+                <summary>Attributes</summary>
+                <span class="label label-info">
+                    <p>author: the author of the file</p>
+                    <p>content: the title of the tile</p>
+                    <p>date: the date of upload</p>
+                </span>
+            </details>
+        </div>
+        
     </div>
+    
 
     <script src="//code.jquery.com/jquery.js"></script>
 </body>

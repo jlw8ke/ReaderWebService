@@ -18,6 +18,43 @@ Flight::route('/developers', function(){
     
 });
 
+Flight::route('POST /login', function() {
+    $db = Flight::db();
+    $username = $_POST['username'];
+    $password= $_POST['password'];
+    $query = $db -> prepare("SELECT username, firstname, lastname, email FROM users WHERE username = ? and password = ?", 
+        array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $query->execute(array($username, $password));
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if(empty($result)) {
+        echo '0';
+    } else {
+        echo Flight::json($result);
+    }
+});
+
+Flight::route('POST /register', function() {
+    $db = Flight::db();
+    $username = $_POST['username'];
+    $password= $_POST['password'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $params = array($username, $password, $firstname, $lastname, $email);
+    $user_params = array($username, $firstname, $lastname, $email);
+    $query = $db -> prepare("INSERT INTO users (username, password, firstname, lastname, email) VALUES (?, ?, ?, ?, ?)",
+        array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $result = $query->execute($params);
+    if($result) {
+        $query = $db -> prepare("SELECT username, firstname, lastname, email FROM users WHERE username = ?", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));        
+        $query->execute(array($username));
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        echo Flight::json($result);
+    } else {
+        echo '0';
+    }    
+});
+
 Flight::route('/developers/users(/@id)',function($id) {
     $db = Flight::db();
     $query;
